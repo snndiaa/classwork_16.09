@@ -33,6 +33,18 @@ void MyString::print()
     cout << str << endl;
 }
 
+void MyString::MyStrcpy(MyString& obj)
+{
+    if (this == &obj)
+    {
+        return;
+    }
+    delete[] str;
+    length = obj.length;
+    str = new char[length + 1];
+    strcpy_s(str, length + 1, obj.str);
+}
+
 MyString::MyString(const MyString& other)
 {
     length = other.length;
@@ -50,11 +62,23 @@ bool MyString::MyStrStr(const char* str)
 	return false;
 }
 
-void MyString::MyStrcpy(const char* str)
+int MyString::MyChr(char c)
 {
-    delete[] this->str;
-    length = strlen(str);
-    this->str = new char[length + 1];
-    strcpy_s(this->str, length + 1, str);
+    for (int i = 0; i < length; ++i)
+    {
+        if (str[i] == c) return i;
+    }   
+    return -1;
 }
 
+int MyString::MyStrLen()
+{
+    return static_cast<int>(strlen(str));
+}
+
+MyString::MyString(const MyString& other)
+{
+    length = other.length;
+    str = new char[length + 1];
+    strcpy_s(str, length + 1, other.str);
+} 

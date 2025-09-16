@@ -8,6 +8,7 @@ public:
 	MyString(int size);
 	MyString(const char* st);
 	~MyString();
+	MyString(const MyString& other);  // конструктор копирования
 
 	void print();
 	void MyStrcpy(MyString& obj);// копирование строк 
@@ -15,7 +16,7 @@ public:
 	int  MyChr(char c); // поиск символа в строке(индекс найденного символа, либо -1) 
 	int MyStrLen();// возвращает длину строки 
 	void MyStrCat(MyString& b); // объединение строк
-	void MyDelChr(char c); // удаляет указанный символ 
+	void MyDelChr(char c); // удаляет указанный символ
 	int MyStrCmp(MyString& b); // сравнение строк 
 };
 
