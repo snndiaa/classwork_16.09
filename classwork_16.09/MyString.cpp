@@ -1,0 +1,60 @@
+#include "MyString.h"
+#include<iostream>
+#include <cstring>
+using namespace std;
+
+MyString::MyString()
+{
+    length = 80;
+    str = new char[length] {};
+}
+
+MyString::MyString(int size)
+{
+    length = size;
+    str = new char[length] {};
+}
+
+MyString::MyString(const char* st)
+{
+    length = strlen(st);
+    str = new char[length+1];
+    strcpy_s(str, length + 1, st);
+}
+
+MyString::~MyString()
+{
+    delete[] str;
+    length = 0;
+}
+
+void MyString::print()
+{
+    cout << str << endl;
+}
+
+MyString::MyString(const MyString& other)
+{
+    length = other.length;
+    str = new char[length + 1];
+    strcpy_s(str, length + 1, other.str);
+}
+
+bool MyString::MyStrStr(const char* str)
+{
+	const char* s = strstr(this->str, str);
+    if (s != nullptr)
+    {
+        return true;
+    }
+	return false;
+}
+
+void MyString::MyStrcpy(const char* str)
+{
+    delete[] this->str;
+    length = strlen(str);
+    this->str = new char[length + 1];
+    strcpy_s(this->str, length + 1, str);
+}
+
