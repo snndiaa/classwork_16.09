@@ -9,6 +9,7 @@ public:
 	MyString(const char* st);
 	~MyString();
 	MyString(const MyString& other);  // конструктор копирования
+	MyString(MyString&& obj); //контруктор переноса 
 
 	void print();
 	void MyStrcpy(MyString& obj);// копирование строк 
@@ -19,4 +20,3 @@ public:
 	void MyDelChr(char c); // удаляет указанный символ
 	int MyStrCmp(MyString& b); // сравнение строк 
 };
-
