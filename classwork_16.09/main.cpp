@@ -48,5 +48,7 @@ int main()
         cout << "Vanya > Arina\n";
     }
 
+    MyString::GetCount();
+
     return 0;
 }
