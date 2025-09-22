@@ -3,6 +3,7 @@ class MyString
 {
 	char* str;
 	int length;
+	static int count; // количество созданных объектов
 public:
 	MyString();
 	MyString(int size);
@@ -19,4 +20,6 @@ public:
 	void MyStrCat(MyString& b); // объединение строк
 	void MyDelChr(char c); // удаляет указанный символ
 	int MyStrCmp(MyString& b); // сравнение строк 
+
+	static void GetCount(); // статический метод для получения количества созданных объектов
 };

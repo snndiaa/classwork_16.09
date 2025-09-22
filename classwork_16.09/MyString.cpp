@@ -3,10 +3,14 @@
 #include <cstring>
 using namespace std;
 
+int MyString::count = 0;
+
 MyString::MyString()
 {
     length = 80;
     str = new char[length] {};
+
+	count++;
 }
 
 
@@ -14,6 +18,8 @@ MyString::MyString(int size)
 {
     length = size;
     str = new char[length] {};
+
+    count++;
 }
 
 MyString::MyString(const char* st)
@@ -21,12 +27,16 @@ MyString::MyString(const char* st)
     length = strlen(st);
     str = new char[length + 1];
     strcpy_s(str, length + 1, st);
+
+    count++;
 }
 
 MyString::~MyString()
 {
     delete[] str;
     length = 0;
+
+    count--;
 }
 
 void MyString::print()
@@ -51,6 +61,8 @@ MyString::MyString(const MyString& other)
     length = other.length;
     str = new char[length + 1];
     strcpy_s(str, length + 1, other.str);
+
+	count++;
 }
 
 MyString::MyString(MyString&& obj)
@@ -135,4 +147,9 @@ int MyString::MyStrCmp(MyString& b)
     if (cmp < 0) return -1;
     if (cmp > 0) return 1;
     return 0;
+}
+
+void MyString::GetCount()
+{
+	cout << "Count of created objects: " << count << endl;
 }
