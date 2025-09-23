@@ -50,5 +50,24 @@ int main()
 
     MyString::GetCount();
 
+    MyString a("Hello");
+    MyString b("lo");
+
+    MyString c = a + b;
+    cout << "a + b = ";
+    c.print();
+
+    MyString d = a - b;
+    cout << "a - b = ";
+    d.print();
+
+    MyString e = a * 3;
+    cout << "a * 3 = ";
+    e.print();
+
+    MyString f = a / 2;
+    cout << "a / 2 = ";
+    f.print();
+
     return 0;
 }

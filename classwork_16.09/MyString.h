@@ -22,4 +22,8 @@ public:
 	int MyStrCmp(MyString& b); // сравнение строк 
 
 	static void GetCount(); // статический метод для получения количества созданных объектов
+	MyString operator+(MyString& other); // конкатенация
+	MyString operator-(MyString& other); // удалить символы второй строки из первой
+	MyString operator*(int times); // повтор строки
+	MyString operator/(int parts); // укорочение строки
 };

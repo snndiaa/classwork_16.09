@@ -153,3 +153,67 @@ void MyString::GetCount()
 {
 	cout << "Count of created objects: " << count << endl;
 }
+
+MyString MyString::operator+(MyString& obj)
+{
+    MyString temp;
+    delete[] temp.str;
+    temp.length = this->length + obj.length;
+    temp.str = new char[temp.length + 1];
+    strcpy_s(temp.str, this->length + 1, this->str);
+    strcat_s(temp.str, temp.length + 1, obj.str);
+    return temp;
+}
+
+MyString MyString::operator-(MyString& obj)
+{
+    MyString temp(*this);
+
+    for (int i = 0; i < obj.length; i++)
+    {
+        temp.MyDelChr(obj.str[i]);
+    }
+    return temp;
+}
+
+MyString MyString::operator*(int times)
+{
+    if (times <= 0)
+    {
+        return MyString("");
+    }
+    MyString temp;
+    delete[] temp.str;
+    temp.length = this->length * times;
+    temp.str = new char[temp.length + 1];
+    temp.str[0] = '\0';
+
+    for (int i = 0; i < times; i++)
+    {
+        strcat_s(temp.str, temp.length + 1, this->str);
+    }
+    return temp;
+}
+
+MyString MyString::operator/(int parts)
+{
+    if (parts <= 0)
+    {
+        return MyString("");
+    }
+
+    int newLen = this->length / parts;
+    if (newLen < 0)
+    {
+        newLen = 0;
+    }
+
+    MyString temp;
+    delete[] temp.str;
+    temp.length = newLen;
+    temp.str = new char[newLen + 1];
+    strncpy_s(temp.str, newLen + 1, this->str, newLen);
+    temp.str[newLen] = '\0';
+
+    return temp;
+}
