@@ -65,9 +65,23 @@ int main()
     cout << "a * 3 = ";
     e.print();
 
-    MyString f = a / 2;
+   /* MyString f = a / 2;
     cout << "a / 2 = ";
-    f.print();
+    f.print();*/
 
+    ++a;
+	a.print();
+
+    --a;
+	a.print();
+
+    a += "World";
+	a.print();
+
+    a -= "lo";
+    a.print();
+
+	cout << "a == b: " << (a == b) << endl;
+	cout << "a > b: " << (a > b) << endl; 
     return 0;
 }

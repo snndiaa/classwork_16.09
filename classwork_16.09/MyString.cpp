@@ -56,11 +56,11 @@ void MyString::MyStrcpy(MyString& obj)
     strcpy_s(str, length + 1, obj.str);
 }
 
-MyString::MyString(const MyString& other) 
+MyString::MyString(const MyString& obj) 
 {
-    length = other.length;
+    length = obj.length;
     str = new char[length + 1];
-    strcpy_s(str, length + 1, other.str);
+    strcpy_s(str, length + 1, obj.str);
 
 	count++;
 }
@@ -195,25 +195,82 @@ MyString MyString::operator*(int times)
     return temp;
 }
 
-MyString MyString::operator/(int parts)
+//MyString MyString::operator/(int parts)
+//{
+//    if (parts <= 0)
+//    {
+//        return MyString("");
+//    }
+//
+//    int newLen = this->length / parts;
+//    if (newLen < 0)
+//    {
+//        newLen = 0;
+//    }
+//
+//    MyString temp;
+//    delete[] temp.str;
+//    temp.length = newLen;
+//    temp.str = new char[newLen + 1];
+//    strncpy_s(temp.str, newLen + 1, this->str, newLen);
+//    temp.str[newLen] = '\0';
+//
+//    return temp;
+//}
+
+MyString& MyString::operator+=(const char* s)
 {
-    if (parts <= 0)
+    int add_len = strlen(s);
+	char* temp = new char[length + add_len + 1];
+
+	strcpy_s(temp, length + 1, str);
+    strcat_s(temp, length + add_len + 1, s);
+
+	delete[] str;
+	str = temp;
+	length += add_len;
+	return *this;   
+}
+
+MyString& MyString::operator-=(const char*s)
+{
+	int remove_len = strlen(s);
+    for (int i = 0; i < remove_len; i++)
     {
-        return MyString("");
+		MyDelChr(s[i]);
     }
+	return *this;
+}
 
-    int newLen = this->length / parts;
-    if (newLen < 0)
+MyString& MyString::operator++()
+{
+	char* temp = new char[length + 2];
+	strcpy_s(temp, length + 2, str);
+	temp[length] = ' ';
+	temp[length + 1] = '\0';
+
+    delete[] str;
+	str = temp;
+    length++;
+	return *this;
+}
+
+MyString& MyString::operator--()
+{
+    if (length > 0) 
     {
-        newLen = 0;
+		str[length - 1] = '\0';
+		length--;
     }
+	return *this;
+}
 
-    MyString temp;
-    delete[] temp.str;
-    temp.length = newLen;
-    temp.str = new char[newLen + 1];
-    strncpy_s(temp.str, newLen + 1, this->str, newLen);
-    temp.str[newLen] = '\0';
+bool MyString::operator==(MyString& obj)
+{
+	return strcmp(this->str, obj.str) == 0;
+}
 
-    return temp;
+bool MyString::operator>(MyString& obj)
+{
+	return strcmp(this->str, obj.str) > 0;
 }

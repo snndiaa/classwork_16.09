@@ -9,7 +9,7 @@ public:
 	MyString(int size);
 	MyString(const char* st);
 	~MyString();
-	MyString(const MyString& other);  // конструктор копирования
+	MyString(const MyString& obj);  // конструктор копирования
 	MyString(MyString&& obj); //контруктор переноса 
 
 	void print();
@@ -22,8 +22,15 @@ public:
 	int MyStrCmp(MyString& b); // сравнение строк 
 
 	static void GetCount(); // статический метод для получения количества созданных объектов
-	MyString operator+(MyString& other); // конкатенация
-	MyString operator-(MyString& other); // удалить символы второй строки из первой
+	MyString operator+(MyString& obj); // конкатенация
+	MyString operator-(MyString& obj); // удалить символы второй строки из первой
 	MyString operator*(int times); // повтор строки
-	MyString operator/(int parts); // укорочение строки
+	//MyString operator/(int parts); // укорочение строки
+
+	MyString& operator+=(const char* s); 
+	MyString& operator-=(const char* s);
+	MyString& operator++(); // префиксный инкремент 
+	MyString& operator--(); // префиксный декремент
+	bool operator==(MyString& obj); // сравнение на равенство
+	bool operator>(MyString& obj); // сравнение 
 };
